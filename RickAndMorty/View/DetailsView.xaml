@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RickAndMorty.View.DetailsPage"
-             xmlns:model="clr-namespace:RickAndMorty.Model"
-             Shell.PresentationMode="ModalAnimated"
-             xmlns:viewmodel ="clr-namespace:RickAndMorty.ViewModel"
-             x:DataType="viewmodel:CharacterDetailsViewModel"
-             Title="{Binding Character.Name}">
+             x:Class="RickAndMorty.View.DetailsView"
+            
+             >
     <ScrollView>
         <VerticalStackLayout>
             <Grid ColumnDefinitions="*,Auto,*" 
@@ -29,18 +26,20 @@
                            WidthRequest="160"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
-                           Source="{Binding Character.Image.AbsoluteUri}"
+                           Source="{Binding SelectedCharacter.Image.AbsoluteUri}"
                      />
                 </Frame>
             </Grid>
             <Frame HorizontalOptions="Center" Margin="10" Opacity="0.8" >
-                <VerticalStackLayout Padding="10" Spacing="10" >
-                <Label Text="{Binding Character.Gender, StringFormat='Gender: {0}'}"/>
-                <Label Text="{Binding Character.Location.Name, StringFormat='Last seen in: {0}'}"/>
-                <Label Text="{Binding Character.Origin.Name, StringFormat='Origin: {0}'}"/>
-                <Label Text="{Binding Character.Status, StringFormat='Status: {0}'}"/>
+              
+            <VerticalStackLayout Padding="0" Spacing="10"    >
+                <Label Text="{Binding SelectedCharacter.Name, StringFormat='Name: {0}'}"/>
+                <Label Text="{Binding SelectedCharacter.Gender, StringFormat='Gender: {0}'}"/>
+                <Label Text="{Binding SelectedCharacter.Location.Name, StringFormat='Last seen in: {0}'}"/>
+                <Label Text="{Binding SelectedCharacter.Origin.Name, StringFormat='Origin: {0}'}"/>
+                <Label Text="{Binding SelectedCharacter.Status, StringFormat='Status: {0}'}"/>
             </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
     </ScrollView>
-</ContentPage>
+</ContentView>

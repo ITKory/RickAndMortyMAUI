@@ -4,12 +4,14 @@
              x:Class="RickAndMorty.View.MainPage"
              xmlns:model="clr-namespace:RickAndMorty.Model"
              xmlns:viewmodel ="clr-namespace:RickAndMorty.ViewModel"
+             xmlns:views="clr-namespace:RickAndMorty.View"
              x:DataType="viewmodel:MainViewModel"
-             Title="{Binding Title}"
+          
+             Title="{Binding  Title}"
              >
 
     <Grid
-        ColumnDefinitions="*,*"
+        ColumnDefinitions="{OnPlatform Default='.60*,.40*', Android='*'}"
         ColumnSpacing="5"
         RowDefinitions="*,Auto"
         RowSpacing="0"
@@ -17,7 +19,7 @@
  
 
         <RefreshView
-            Grid.ColumnSpan="2"
+         
             Command="{Binding GetCharactersCommand}"
             IsRefreshing="{Binding IsRefreshing}">
             <CollectionView
@@ -37,6 +39,7 @@
                                     <Image
                                         Aspect="AspectFill"
                                         HeightRequest="125"
+                                        
                                         Source="{Binding Image}"
                                         WidthRequest="125" />
                                     
@@ -63,7 +66,6 @@
           
             Text="Get Characters" />
  
-   
 
 
         <ActivityIndicator
@@ -73,5 +75,6 @@
             IsRunning="{Binding IsBusy}"
             IsVisible="{Binding IsBusy}"
             VerticalOptions="CenterAndExpand" />
+        <views:DetailsView   Grid.Column="{OnIdiom Phone=0, Default=1}" IsVisible="{OnIdiom Phone=False, Default=True}"/>
     </Grid>
 </ContentPage>

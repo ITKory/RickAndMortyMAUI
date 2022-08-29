@@ -22,16 +22,30 @@ namespace RickAndMorty.ViewModel
         [ObservableProperty]
         bool isRefreshing;
 
+        [ObservableProperty]
+        bool isDetailsVisible;
+
+        [ObservableProperty]
+        Character selectedCharacter;
+
 
         [RelayCommand]
         async Task GoToDetailsAsync(Character character)
         {
             if (character is null)
                 return;
+            else
+            {
+                SelectedCharacter = character;
+                if (isDetailsVisible is false)
+                    isDetailsVisible = true;
+            }
+            #if __MOBILE__
             await Shell.Current.GoToAsync($"{nameof(DetailsPage)}", true, new Dictionary<string, object>
             {
-                {"Character",character }
+                {"Character",SelectedCharacter }
             });
+            #endif
 
         }
 
